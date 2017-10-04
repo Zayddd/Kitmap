@@ -12,7 +12,7 @@ public class BlacklistHelpCommand implements CommandExecutor {
   
   public BlacklistHelpCommand(Run instance)
   {
-    this.plugin = instance;
+    plugin = instance;
   }
   
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args)

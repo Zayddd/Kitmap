@@ -13,7 +13,7 @@ public class CheckBlacklist implements CommandExecutor {
   
   public CheckBlacklist(Run instance)
   {
-    this.plugin = instance;
+    plugin = instance;
   }
   
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
@@ -22,7 +22,7 @@ public class CheckBlacklist implements CommandExecutor {
       if (args.length < 1) {
         sender.sendMessage(ChatColor.RED + "Usage: /" + label + " <player>");
       } else if (args.length == 1) {
-        if (this.plugin.banconfig.getConfig().contains(args[0].toLowerCase())) {
+        if (plugin.banconfig.getConfig().contains(args[0].toLowerCase())) {
           sender.sendMessage(ChatColor.RED + args[0] + " has a recording of being blacklisted.");
         } else {
           sender.sendMessage(ChatColor.RED + args[0] + " has no recording of being blacklisted.");

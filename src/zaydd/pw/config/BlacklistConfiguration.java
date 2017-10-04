@@ -15,29 +15,23 @@ public class BlacklistConfiguration {
   
   public BlacklistConfiguration(Run instance)
   {
-    this.plugin = instance;
+    plugin = instance;
   }
-  
-  public void loadConfig()
-  {
-    getConfig().options().copyDefaults(true);
-    saveConfig();
-  }
-  
+
   public FileConfiguration getConfig()
   {
-    if (this.config == null) {
+    if (config == null) {
       reloadConfig();
     }
-    return this.config;
+    return config;
   }
   
   public void reloadConfig()
   {
-    if (this.configFile == null) {
-      this.configFile = new File(this.plugin.getDataFolder(), "blacklist.yml");
+    if (configFile == null) {
+      configFile = new File(this.plugin.getDataFolder(), "blacklist.yml");
     }
-    this.config = YamlConfiguration.loadConfiguration(this.configFile);
+    config = YamlConfiguration.loadConfiguration(this.configFile);
   }
   
   public void saveConfig()

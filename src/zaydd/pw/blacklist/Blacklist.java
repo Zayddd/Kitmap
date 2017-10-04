@@ -15,7 +15,7 @@ public class Blacklist implements CommandExecutor {
   
   public Blacklist(Run instance)
   {
-    this.plugin = instance;
+    plugin = instance;
   }
   
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
@@ -27,8 +27,8 @@ public class Blacklist implements CommandExecutor {
       }
       else if (args.length == 1)
       {
-        Player target = this.plugin.getServer().getPlayer(args[0]);
-        OfflinePlayer offlineTarget = this.plugin.getServer().getOfflinePlayer(args[0]);
+        Player target = plugin.getServer().getPlayer(args[0]);
+        OfflinePlayer offlineTarget = plugin.getServer().getOfflinePlayer(args[0]);
         if (target != null)
         {
           String reason = "\n";
@@ -36,10 +36,10 @@ public class Blacklist implements CommandExecutor {
           target.kickPlayer("§cYou account has been blacklisted from the \n<servername>\n§cThis punishment cannot be appealed.");
           target.setBanned(true);
           
-          this.plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
+          plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
           
-          this.plugin.banconfig.getConfig().set(target.getName().toLowerCase(), reason);
-          this.plugin.banconfig.saveConfig();
+          plugin.banconfig.getConfig().set(target.getName().toLowerCase(), reason);
+          plugin.banconfig.saveConfig();
         }
         else
         {
@@ -47,16 +47,16 @@ public class Blacklist implements CommandExecutor {
           
           offlineTarget.setBanned(true);
           
-          this.plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
+          plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
           
-          this.plugin.banconfig.getConfig().set(offlineTarget.getName().toLowerCase(), reason);
-          this.plugin.banconfig.saveConfig();
+          plugin.banconfig.getConfig().set(offlineTarget.getName().toLowerCase(), reason);
+          plugin.banconfig.saveConfig();
         }
       }
       else if (args.length > 1)
       {
-        Player target = this.plugin.getServer().getPlayer(args[0]);
-        OfflinePlayer offlineTarget = this.plugin.getServer().getOfflinePlayer(args[0]);
+        Player target = plugin.getServer().getPlayer(args[0]);
+        OfflinePlayer offlineTarget = plugin.getServer().getOfflinePlayer(args[0]);
         if (target != null)
         {
           String reason = "";
@@ -66,9 +66,9 @@ public class Blacklist implements CommandExecutor {
           target.kickPlayer("§cYou account has been blacklisted from the \n<servername>\n§cThis punishment cannot be appealed.");
           target.setBanned(true);
           
-          this.plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
-          this.plugin.banconfig.getConfig().set(target.getName().toLowerCase(), reason);
-          this.plugin.banconfig.saveConfig();
+          plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
+          plugin.banconfig.getConfig().set(target.getName().toLowerCase(), reason);
+          plugin.banconfig.saveConfig();
         }
         else
         {
@@ -78,10 +78,10 @@ public class Blacklist implements CommandExecutor {
           }
           offlineTarget.setBanned(true);
           
-          this.plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
+          plugin.getServer().broadcastMessage("§c" + target.getName() + " was blacklisted by " + sender.getName() + ".");
           
-          this.plugin.banconfig.getConfig().set(offlineTarget.getName().toLowerCase(), reason);
-          this.plugin.banconfig.saveConfig();
+          plugin.banconfig.getConfig().set(offlineTarget.getName().toLowerCase(), reason);
+          plugin.banconfig.saveConfig();
         }
       }
     }

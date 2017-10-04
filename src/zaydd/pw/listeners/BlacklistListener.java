@@ -13,7 +13,7 @@ public class BlacklistListener implements Listener {
   
   public BlacklistListener(Run instance)
   {
-    this.plugin = instance;
+    plugin = instance;
   }
   
   //TODO: completely redo blacklists, LOL i'm 99% sure this is old skidded code 
@@ -21,7 +21,7 @@ public class BlacklistListener implements Listener {
   public void onJoin(AsyncPlayerPreLoginEvent event)
   {
     String player = event.getName().toLowerCase();
-    if (this.plugin.banconfig.getConfig().getString(player) != null) {
+    if (plugin.banconfig.getConfig().getString(player) != null) {
       event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, " §cYou account has been blacklisted from the \n<servername>\n §cThis punishment cannot be appealed." + this.plugin.banconfig.getConfig().getString(player));
     }
   }

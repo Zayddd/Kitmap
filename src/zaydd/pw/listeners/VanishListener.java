@@ -15,27 +15,30 @@ public class VanishListener implements Listener {
     public Set<String> vanish;
     
     public VanishListener(final Run pl) {
-        this.vanish = new HashSet<String>();
-        this.plugin = pl;
+        vanish = new HashSet<String>();
+        plugin = pl;
     }
     
-    public boolean isVanished(final Player player) {
-        return this.vanish.contains(player.getName());
+    public boolean isVanished(final Player player)
+    {
+        return vanish.contains(player.getName());
     }
     
-    public void toggleVanish(final Player player) {
-        if (this.isVanished(player)) {
-            this.disableVanish(player);
+    public void toggleVanish(final Player player)
+    {
+        if (isVanished(player)) {
+            disableVanish(player);
         }
         else {
-            this.enableVanish(player);
+            enableVanish(player);
         }
     }
     
     
 
     
-    public void enableVanish(final Player player) {
+    public void enableVanish(final Player player)
+    {
         Player[] arrayOfPlayer;
         for (int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length, i = 0; i < j; ++i) {
             final Player online = arrayOfPlayer[i];
@@ -43,8 +46,8 @@ public class VanishListener implements Listener {
                 online.hidePlayer(player);
             }
         }
-        this.vanish.add(player.getName());
-        this.plugin.updateVanishItem(player);
+        vanish.add(player.getName());
+        plugin.updateVanishItem(player);
     }
     
     public void disableVanish(final Player player) {
@@ -53,8 +56,8 @@ public class VanishListener implements Listener {
             final Player online = arrayOfPlayer[i];
             online.showPlayer(player);
         }
-        this.vanish.remove(player.getName());
-        this.plugin.updateVanishItem(player);
+        vanish.remove(player.getName());
+        plugin.updateVanishItem(player);
     }
     
     @EventHandler

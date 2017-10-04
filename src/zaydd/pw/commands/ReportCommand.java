@@ -9,7 +9,8 @@ import org.bukkit.*;
 
 public class ReportCommand implements CommandExecutor {
 
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args)
+    {
         if (!cmd.getName().equalsIgnoreCase("report")) {
             return false;
         }
@@ -34,10 +35,10 @@ public class ReportCommand implements CommandExecutor {
             if (!(sender instanceof Player)) {
                 if (online.hasPermission("core.report")) {
                     if (t == null) {
-                        online.sendMessage("§9" + sender.getName() + " §bhas reported §4(offline)§c" + args[0].toString() + " §bfor: §e" + (Object)message);
+                        online.sendMessage("§9" + sender.getName() + " §bhas reported §4(offline)§c" + args[0].toString() + " §bfor: §e" + (message));
                     }
                     else {
-                        online.sendMessage("§9" + sender.getName() + " §bhas reported §c" + t.getName() + " §bfor: §e" + (Object)message);
+                        online.sendMessage("§9" + sender.getName() + " §bhas reported §c" + t.getName() + " §bfor: §e" + (message));
                     }
                 }
                 sender.sendMessage("§aThanks for your report, all staff on the network have been notified and will investigate soon.");
@@ -46,11 +47,11 @@ public class ReportCommand implements CommandExecutor {
                 final Player p = (Player)sender;
                 if (online.hasPermission("core.viewreport")) {
                     if (t == null) {
-                        online.sendMessage("§9" + p.getName() + " §bhas reported §4(offline)§c" + args[0].toString() + " §bfor: §e" + (Object)message);
+                        online.sendMessage("§9" + p.getName() + " §bhas reported §4(offline)§c" + args[0].toString() + " §bfor: §e" + (message));
                         Cooldowns.addCooldown("report_cooldown", p, 60);
                     }
                     else {
-                        online.sendMessage("§9" + p.getName() + " §bhas reported §c" + t.getName() + " §bfor: §e" + (Object)message);
+                        online.sendMessage("§9" + p.getName() + " §bhas reported §c" + t.getName() + " §bfor: §e" + (message));
                         Cooldowns.addCooldown("report_cooldown", p, 60);
                     }
                 }

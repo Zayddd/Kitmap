@@ -14,7 +14,7 @@ public class Unblacklist implements CommandExecutor {
   
   public Unblacklist(Run instance)
   {
-    this.plugin = instance;
+    plugin = instance;
   }
   
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
@@ -26,13 +26,13 @@ public class Unblacklist implements CommandExecutor {
       }
       else if (args.length > 0)
       {
-        OfflinePlayer target = this.plugin.getServer().getOfflinePlayer(args[0]);
+        OfflinePlayer target = plugin.getServer().getOfflinePlayer(args[0]);
         if (target != null)
         {
           if (target.isBanned())
           {
-            this.plugin.banconfig.getConfig().set(target.getName().toLowerCase(), null);
-            this.plugin.banconfig.saveConfig();
+            plugin.banconfig.getConfig().set(target.getName().toLowerCase(), null);
+            plugin.banconfig.saveConfig();
             
             target.setBanned(false);
             

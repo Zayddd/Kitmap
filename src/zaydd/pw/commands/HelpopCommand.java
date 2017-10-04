@@ -6,9 +6,11 @@ import org.bukkit.*;
 
 public class HelpopCommand implements CommandExecutor
 {
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args)
+    {
         final boolean b = sender instanceof Player;
         final Player p = (Player)sender;
+
         if (!cmd.getName().equalsIgnoreCase("helpop")) {
             return false;
         }
@@ -24,7 +26,7 @@ public class HelpopCommand implements CommandExecutor
         for (int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length, k = 0; k < j; ++k) {
             final Player online = arrayOfPlayer[k];
             if (online.hasPermission("core.viewhelpop")) {
-                online.sendMessage("§9" + p.getName() + " §bhas requested staff assistance: §e" + (Object)message);
+                online.sendMessage("§9" + p.getName() + " §bhas requested staff assistance: §e" + (message));
                 p.playSound(p.getLocation(), Sound.NOTE_PLING, 3.0f, 3.0f);
             }
         }

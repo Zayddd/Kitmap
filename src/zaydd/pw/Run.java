@@ -49,12 +49,12 @@ public class Run extends JavaPlugin {
 	  
     public Run()
     {
-	    this.banconfig = new BlacklistConfiguration(this);
-        this.vanish = new VanishListener(this);
-        this.mod = new ModCommand(this);
-        this.mode = new HashSet<String>();
-        this.inventoryContents = new HashMap<String, ItemStack[]>();
-        this.armorContents = new HashMap<String, ItemStack[]>();
+	    banconfig = new BlacklistConfiguration(this);
+        vanish = new VanishListener(this);
+        mod = new ModCommand(this);
+        mode = new HashSet<String>();
+        inventoryContents = new HashMap<String, ItemStack[]>();
+        armorContents = new HashMap<String, ItemStack[]>();
     }
 	  
 	public void onEnable() 
@@ -63,50 +63,52 @@ public class Run extends JavaPlugin {
 		registerCommands();
 		setupConfig();
 		loadCooldowns();
-		//getConfig().options().copyDefaults(true);
-		//saveConfig();
 		registerListeners();
-		wrapper = new ScoreboardWrapper(this, new ExampleProvider());
+		wrapper = new ScoreboardWrapper(this, new Scoreboard());
         Player[] arrayOfPlayer;
         for (int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length, i = 0; i < j; ++i) {
             final Player online = arrayOfPlayer[i];
-            if (this.isMod(online) && !this.isToggled(online)) {
-                this.enableMode(online);
+            if (isMod(online) && !isToggled(online)) {
+                enableMode(online);
             }
         }
 	}
 	
-	 public boolean isToggled(final Player player) {
-	        return this.mode.contains(player.getName());
+	 public boolean isToggled(final Player player)
+	 {
+	        return mode.contains(player.getName());
 	    }
 	    
-	    public void toggleMode(final Player player) {
-	        if (this.isToggled(player)) {
-	            this.disableMode(player);
+	    public void toggleMode(final Player player)
+		{
+	        if (isToggled(player)) {
+	            disableMode(player);
 	        }
 	        else {
-	            this.enableMode(player);
+	            enableMode(player);
 	        }
 	    }
-	    public void enableMode(final Player player) {
-	        this.mode.add(player.getName());
-	        this.saveContents(player);
+	    public void enableMode(final Player player)
+		{
+	        mode.add(player.getName());
+	        saveContents(player);
 	        player.getInventory().clear();
-	        player.getInventory().setHelmet((ItemStack)null);
-	        player.getInventory().setChestplate((ItemStack)null);
-	        player.getInventory().setLeggings((ItemStack)null);
-	        player.getInventory().setBoots((ItemStack)null);
-	        this.modItems(player);
-	        this.vanish.enableVanish(player);
+	        player.getInventory().setHelmet(null);
+	        player.getInventory().setChestplate(null);
+	        player.getInventory().setLeggings(null);
+	        player.getInventory().setBoots(null);
+	        modItems(player);
+	        vanish.enableVanish(player);
 	        player.setGameMode(GameMode.CREATIVE);
-	        player.sendMessage(this.translate("Enabled mode"));
+	        player.sendMessage(translate("Enabled mode"));
 	    }
-	    public void disableMode(final Player player) {
-	        this.mode.remove(player.getName());
-	        this.vanish.disableVanish(player);
-	        player.sendMessage(this.translate("Disabled mode"));
+	    public void disableMode(final Player player)
+		{
+	        mode.remove(player.getName());
+	        vanish.disableVanish(player);
+	        player.sendMessage(translate("Disabled mode"));
 	        player.getInventory().clear();
-	        this.setContents(player);
+	        setContents(player);
 	        if (player.hasPermission("core.creative")) {
 	            player.setGameMode(GameMode.CREATIVE);
 	        }
@@ -115,11 +117,12 @@ public class Run extends JavaPlugin {
 	        }
 	    }
 	    
-	    public void disableModeQuit(final Player player) {
-	        this.mode.remove(player.getName());
-	        player.sendMessage(this.translate("Disabled mode"));
+	    public void disableModeQuit(final Player player)
+		{
+	        mode.remove(player.getName());
+	        player.sendMessage(translate("Disabled mode"));
 	        player.getInventory().clear();
-	        this.setContents(player);
+	        setContents(player);
 	        if (player.hasPermission("core.creative")) {
 	            player.setGameMode(GameMode.CREATIVE);
 	        }
@@ -128,12 +131,14 @@ public class Run extends JavaPlugin {
 	        }
 	    }
 	    
-	    public boolean isMod(final Player player) {
+	    public boolean isMod(final Player player)
+		{
 	        return player.hasPermission("core.mod");
 	    }
 	    
-	    public void updateVanishItem(final Player player) {
-	        if (this.vanish.isVanished(player)) {
+	    public void updateVanishItem(final Player player)
+		{
+	        if (vanish.isVanished(player)) {
 	            final ItemStack vanish = new ItemStack(Material.INK_SACK, 1, (short)10);
 	            final ItemMeta vanishMeta = vanish.getItemMeta();
 	            vanishMeta.setDisplayName(this.translate("Vanish off name"));
@@ -159,17 +164,20 @@ public class Run extends JavaPlugin {
 	        }
 	    }
 	    
-	    public void saveContents(final Player player) {
-	        this.inventoryContents.put(player.getName(), player.getInventory().getContents());
-	        this.armorContents.put(player.getName(), player.getInventory().getArmorContents());
+	    public void saveContents(final Player player)
+		{
+	        inventoryContents.put(player.getName(), player.getInventory().getContents());
+	        armorContents.put(player.getName(), player.getInventory().getArmorContents());
 	    }
 	    
-	    public void setContents(final Player player) {
-	        player.getInventory().setContents((ItemStack[])this.inventoryContents.get(player.getName()));
-	        player.getInventory().setArmorContents((ItemStack[])this.armorContents.get(player.getName()));
+	    public void setContents(final Player player)
+		{
+	        player.getInventory().setContents((ItemStack[])inventoryContents.get(player.getName()));
+	        player.getInventory().setArmorContents((ItemStack[])armorContents.get(player.getName()));
 	    }
 	    
-	    public void modItems(final Player player) {
+	    public void modItems(final Player player)
+		{
 	        final ItemStack compass = new ItemStack(Material.COMPASS, 1);
 	        final ItemStack book = new ItemStack(Material.BOOK, 1);
 	        final ItemStack axe = new ItemStack(Material.WOOD_AXE, 1);
@@ -183,9 +191,9 @@ public class Run extends JavaPlugin {
 	        bookMeta.setDisplayName(this.translate("Book name"));
 	        axeMeta.setDisplayName(this.translate("Axe name"));
 	        randomMeta.setDisplayName(this.translate("Random TP name"));
-	        final ArrayList<String> compassLore = new ArrayList<String>();
-	        final ArrayList<String> bookLore = new ArrayList<String>();
-	        final ArrayList<String> axeLore = new ArrayList<String>();
+	        final ArrayList<String> compassLore = new ArrayList<>();
+	        final ArrayList<String> bookLore = new ArrayList<>();
+	        final ArrayList<String> axeLore = new ArrayList<>();
 	        final ArrayList<String> randomLore = new ArrayList<String>();
 	        final ArrayList<String> vanishOffLore = new ArrayList<String>();
 	        final ArrayList<String> vanishOnLore = new ArrayList<String>();
@@ -213,35 +221,28 @@ public class Run extends JavaPlugin {
 	            player.getInventory().setItem(2, axe);
 	            player.getInventory().setItem(3, staff);
 	            player.getInventory().setItem(8, random);
-	            final ItemStack ll = new ItemStack(Material.WOOD_AXE);
-	            final ItemMeta llmeta = ll.getItemMeta();
-	            ll.addUnsafeEnchantment(Enchantment.LUCK, 1);
-	            ll.setItemMeta(llmeta);
+
 	        }
-	        final ArrayList<String> c = new ArrayList<String>();
-	        final int times = 0;
-	        final int players = Bukkit.getOnlinePlayers().length;
 	    }
 	    
-	    public void setupConfig() {
-	        this.getConfig().options().copyDefaults(true);
-	        this.saveDefaultConfig();
-	        this.reloadConfig();
+	    public void setupConfig()
+		{
+	        getConfig().options().copyDefaults(true);
+	        saveDefaultConfig();
+	        reloadConfig();
 	    }
 	    
-	    public String translate(final String text) {
+	    public String translate(final String text)
+		{
 	        return ChatColor.translateAlternateColorCodes('&', this.getConfig().getString(text));
 	    }
 	    
-	    public String color(final String text) {
+	    public String color(final String text)
+		{
 	        return ChatColor.translateAlternateColorCodes('&', text);
 	    }
-	    
-	    public void debug(final String text) {
-	        Bukkit.broadcastMessage(text);
-	    }
-	    
-	  public static class ExampleProvider implements ScoreboardProvider {
+
+	  public static class Scoreboard implements ScoreboardProvider {
 		
 		public static DecimalFormat TPS_FORMAT = new DecimalFormat("0.0");
 		//TODO: should probably fix this kek
@@ -265,8 +266,8 @@ public class Run extends JavaPlugin {
 			if (player.hasPermission("core.staff")) {
 				lines.add("§7§m----------------------------");
 		          lines.add("§e§lStaff Mode§7:");
-		           lines.add(ChatColor.GOLD.toString() + "» " + ChatColor.YELLOW.toString() + "TPS" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(Bukkit.spigot().getTPS()[0]));
-		           lines.add(ChatColor.GOLD.toString() + "» " + ChatColor.YELLOW.toString() + "Lag" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(150.0 - Bukkit.spigot().getTPS()[0] * 5.0) + "%");
+		           lines.add(ChatColor.GOLD.toString() + "» " + ChatColor.YELLOW.toString() + "TPS" + ChatColor.GRAY + ": " + ChatColor.RED + Scoreboard.TPS_FORMAT.format(Bukkit.spigot().getTPS()[0]));
+		          // lines.add(ChatColor.GOLD.toString() + "» " + ChatColor.YELLOW.toString() + "Lag" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(150.0 - Bukkit.spigot().getTPS()[0] * 5.0) + "%");
 		           lines.add("§7§m----------------------------");
 					
 				}
@@ -322,9 +323,9 @@ public class Run extends JavaPlugin {
         Player[] arrayOfPlayer;
         for (int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length, i = 0; i < j; ++i) {
             final Player online = arrayOfPlayer[i];
-            if (this.isMod(online) && this.isToggled(online)) {
-                this.disableMode(online);
-                online.sendMessage(this.translate("Reload disable"));
+            if (isMod(online) && isToggled(online)) {
+                disableMode(online);
+                online.sendMessage(translate("Reload disable"));
             }
         }
 	}

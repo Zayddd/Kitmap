@@ -12,7 +12,7 @@ public class StaffChatCommand implements CommandExecutor {
     private List<String> chatters;
     
     public StaffChatCommand() {
-        this.chatters = new ArrayList<String>();
+        chatters = new ArrayList<String>();
     }
     
     private boolean canUseAdminChat(final CommandSender sender) {
@@ -33,7 +33,7 @@ public class StaffChatCommand implements CommandExecutor {
     public boolean onCommand(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) {
         final String msg = this.buildMessage(args, 0);
         if (commandLabel.equalsIgnoreCase("sc") || commandLabel.equalsIgnoreCase("staffchat")) {
-            if (this.canUseAdminChat(sender)) {
+            if (canUseAdminChat(sender)) {
                 if (args.length > 0) {
                 }
                 else {
@@ -49,8 +49,8 @@ public class StaffChatCommand implements CommandExecutor {
     
     @EventHandler
     public void onPlayerChat(final AsyncPlayerChatEvent event) {
-        if (this.chatters.contains(event.getPlayer().getName())) {
-            this.sendToChat(event.getMessage(), (CommandSender)event.getPlayer());
+        if (chatters.contains(event.getPlayer().getName())) {
+            sendToChat(event.getMessage(), (CommandSender)event.getPlayer());
             event.setCancelled(true);
         }
     }
@@ -58,8 +58,8 @@ public class StaffChatCommand implements CommandExecutor {
     @EventHandler
     public void onPlayerQuit(final PlayerQuitEvent event) {
         final String pname = event.getPlayer().getName();
-        if (this.chatters.contains(pname)) {
-            this.chatters.remove(pname);
+        if (chatters.contains(pname)) {
+            chatters.remove(pname);
         }
     }
     
