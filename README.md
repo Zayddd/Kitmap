@@ -14,4 +14,4 @@ Features:
 
 Got alot more coming in the future! :)
 
-In-game: ![https://i.gyazo.com/707577f9d2beb2780f6761642723b7e3.png]
+In-game: ![image](http://skids.team/png/ingame.png)
