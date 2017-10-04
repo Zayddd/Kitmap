@@ -248,21 +248,25 @@ public class Run extends JavaPlugin {
 	
 		public String getTitle(Player player) 
 		{
-			return ChatColor.GOLD + "   §2§lCore §c[Kit Map]  ";
+			return ChatColor.GOLD + "   §6§lCore §c[Kit Map]  ";
 		}
 
 		@SuppressWarnings("deprecation")
 		public List<String> getLines(Player player) {
 			List<String> lines = new ArrayList<>();
-			lines.add(ChatColor.GRAY + "§m--------------------------");
-			lines.add(ChatColor.GREEN + "Online§7: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().length + "/100");
-			lines.add(ChatColor.GRAY + "§m--------------------------");
+			lines.add(ChatColor.YELLOW.toString() + ChatColor.BOLD.toString() + "Online: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().length + "/100");
+
+
+			//lines.add(ChatColor.GRAY + "§m--------------------------");
+			//lines.add(ChatColor.GREEN + "Online§7: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().length + "/100");
+			//lines.add(ChatColor.GRAY + "§m--------------------------");
 			if (!lines.isEmpty()) 
 			{
 			if (player.hasPermission("core.staff")) {
+				lines.add("§7§m----------------------------");
 		          lines.add("§e§lStaff Mode§7:");
-		           lines.add(ChatColor.YELLOW.toString() + "TPS" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(Bukkit.spigot().getTPS()[0]));
-		           lines.add(ChatColor.YELLOW.toString() + "Lag" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(150.0 - Bukkit.spigot().getTPS()[0] * 5.0) + "%");
+		           lines.add(ChatColor.GOLD.toString() + "» " + ChatColor.YELLOW.toString() + "TPS" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(Bukkit.spigot().getTPS()[0]));
+		           lines.add(ChatColor.GOLD.toString() + "» " + ChatColor.YELLOW.toString() + "Lag" + ChatColor.GRAY + ": " + ChatColor.RED + ExampleProvider.TPS_FORMAT.format(150.0 - Bukkit.spigot().getTPS()[0] * 5.0) + "%");
 		           lines.add("§7§m----------------------------");
 					
 				}

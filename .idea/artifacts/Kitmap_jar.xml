@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="Kitmap:jar">
-    <output-path>$PROJECT_DIR$</output-path>
+    <output-path>$USER_HOME$/Desktop/Top Secret Files/Dev/plugins</output-path>
     <root id="archive" name="Kitmap.jar">
       <element id="module-output" name="Kitmap" />
     </root>
