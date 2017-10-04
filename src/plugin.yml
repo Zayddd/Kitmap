@@ -1,0 +1,25 @@
+name: kCore
+version: 2.0-SNAPSHOT
+main: zaydd.pw.Run
+load: startup
+commands:
+  diamond:
+    aliases: d
+  help:
+    aliases: halp
+  blacklist:
+  unblacklist:
+  blacklisthelp:
+  checkblacklist:
+  mod:
+    aliases: h
+  list:
+  report:
+    aliases: hacker
+  helpop:
+    aliases: request
+  cc:
+    aliases: clearchat
+  sc:
+    aliases: staffchat
+

@@ -1,0 +1,33 @@
+#▒█░▄▀ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▀█ ▒█▀▀▀ 
+#▒█▀▄░ ▒█░░░ ▒█░░▒█ ▒█▄▄▀ ▒█▀▀▀
+#▒█░▒█ ▒█▄▄█ ▒█▄▄▄█ ▒█░▒█ ▒█▄▄▄ 
+
+
+No staff online: '&cThere are not enough staff members online to use this.'
+No users online: '&cThere are not enough users online to use this.'
+Staff logged out: '&cThis staff member logged out. Please try again with another.'
+Teleporting to staff: '&9Teleporting to staff member: &a{name}'
+Enabled mode: '&eModerator Mode: &2Enabled'
+Disabled mode: '&eModerator Mode: &4Disabled'
+Reload disable: '&cYour Moderator Mode was disabled because the server reloaded.'
+Random teleport: '&eYou were randomly teleported to: &b{name}'
+Compass name: '&bTeleportation Compass'
+Compass lore:
+    - '&7Right click block: Move through'
+    - '&7Left click: Move to block in line of sight' 
+Book name: '&bInspector Book'
+Book lore:
+    - '&7Right click player to inspect inventory'
+    - '&7Also available with &e/invsee <player>'
+Axe name: '&bWorldEdit Wand'
+Axe lore:
+    - '&7(Requires WorldEdit perms, sold separately)' 
+Vanish off name: '&bRight click to turn off vanish.'
+Vanish off lore: 
+    - '&7Right click to turn off vanish.' 
+Vanish on name: '&bRight click to turn on vanish.'
+Vanish on lore:
+    - '&7Right click to turn on vanish.' 
+Random TP name: '&bRandom Teleport'
+Random TP lore:
+    - '&7Right click to teleport to a &erandom player'
