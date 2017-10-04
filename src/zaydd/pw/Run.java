@@ -28,14 +28,7 @@ import zaydd.pw.commands.ReportCommand;
 import zaydd.pw.commands.StaffChatCommand;
 import zaydd.pw.config.BlacklistConfiguration;
 import zaydd.pw.cooldowns.Cooldowns;
-import zaydd.pw.listeners.BlacklistListener;
-import zaydd.pw.listeners.DefaultOnJoinMessageListener;
-import zaydd.pw.listeners.EnderpearlCooldownListener;
-import zaydd.pw.listeners.KitsListener;
-import zaydd.pw.listeners.StaffOnJoinListener;
-import zaydd.pw.listeners.VanishListener;
-import zaydd.pw.listeners.WeatherCancelListener;
-import zaydd.pw.listeners.onPlayerJoinListener;
+import zaydd.pw.listeners.*;
 import zaydd.pw.scoreboard.ScoreboardProvider;
 import zaydd.pw.scoreboard.ScoreboardWrapper;
 import zaydd.pw.staffutilites.StaffItemsListener;
@@ -255,7 +248,7 @@ public class Run extends JavaPlugin {
 	
 		public String getTitle(Player player) 
 		{
-			return ChatColor.GOLD + "   §2§lYOURSERVER §c[Kit Map]  ";
+			return ChatColor.GOLD + "   §2§lCore §c[Kit Map]  ";
 		}
 
 		@SuppressWarnings("deprecation")
@@ -295,6 +288,7 @@ public class Run extends JavaPlugin {
 		pm.registerEvents(new onPlayerJoinListener(), this);
 		pm.registerEvents(new WeatherCancelListener(), this);
 		pm.registerEvents(new DefaultOnJoinMessageListener(), this);
+		pm.registerEvents(new StaffOnQuitListener(), this);
 		pm.registerEvents(new StaffOnJoinListener(), this);
 		
 	}
