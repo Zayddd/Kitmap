@@ -3,6 +3,10 @@ New open-sourced kitmap core. :)
 
 Decided to open this because why not?
 
++ Features below.
+
+Ingame: ![alt tag](https://i.gyazo.com/707577f9d2beb2780f6761642723b7e3.png)
+
 Features:
 
 - Blacklist System
@@ -14,4 +18,3 @@ Features:
 
 Got alot more coming in the future! :)
 
-ingame: ![alt tag](https://i.gyazo.com/707577f9d2beb2780f6761642723b7e3.png)
